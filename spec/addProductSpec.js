@@ -2,7 +2,7 @@ var addProduct = require('../src/addProduct').addProduct;
 var getTotal = require('../src/addProduct').getTotal;
 
 describe("Shopping Cart suite", function() {
-  describe("Adds products to the shopping cart", function() {
+  describe("Add products to the shopping cart", function() {
     var shoppingCart;
     beforeAll(function() {
       shoppingCart = addProduct('dove', 5);
