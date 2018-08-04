@@ -1,21 +1,28 @@
-var shoppingCart = {}, products = [];
+var shoppingCart = {products: []};
 var priceCatalogue = {
   dove: 39.99
 }
 
 function addProduct(product, qty) {
-  products.push(
+  shoppingCart.products.push(
     {
       item: product,
       unit_price: priceCatalogue[product],
       qty: qty
     }
   );
-  shoppingCart.products = products;
   return shoppingCart;
 }
 
+function getTotal() {
+  var total;
+  shoppingCart.products.forEach(function(product) {
+    total = product.unit_price * product.qty;
+  });
+  shoppingCart.total_price = +total.toFixed(2);
+}
+
 module.exports = {
-  shoppingCart,
-  addProduct
+  addProduct,
+  getTotal
 }

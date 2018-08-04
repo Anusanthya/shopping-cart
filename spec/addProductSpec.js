@@ -1,7 +1,9 @@
 var addProduct = require('../src/addProduct').addProduct;
+var getTotal = require('../src/addProduct').getTotal;
 
 describe("Shopping Cart suite", function() {
   describe("Adds products to the shopping cart", function() {
+    var shoppingCart;
     beforeAll(function() {
       shoppingCart = addProduct('dove', 5);
     });
@@ -15,7 +17,12 @@ describe("Shopping Cart suite", function() {
             qty: 5
           }
         ]
-      })
+      });
+    })
+
+    it("It calculates the total price of the items in the cart", function() {
+      getTotal();
+      expect(shoppingCart.total_price).toEqual(199.95);
     })
   })
 })
