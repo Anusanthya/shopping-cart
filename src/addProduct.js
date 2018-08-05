@@ -1,6 +1,6 @@
 var shoppingCart = {products: []};
 var priceCatalogue = {
-  dove: 39.99
+  dove_soap: 39.99
 }
 
 function addProduct(product, qty) {
