@@ -4,14 +4,17 @@ var priceCatalogue = {
 }
 
 function addProduct(product, qty) {
-  shoppingCart.products.push(
-    {
-      item: product,
-      unit_price: priceCatalogue[product],
-      qty: qty
+  var isProductAdded = shoppingCart.products.find(function(item) {
+    if (item.name === product) {
+      return item.qty += qty;
     }
-  );
-  return shoppingCart;
+  });
+
+  if(!isProductAdded) {
+    shoppingCart.products.push({name: product, unit_price: priceCatalogue[product], qty: qty});
+  }
+
+  getTotal();
 }
 
 function getTotal() {
@@ -23,6 +26,7 @@ function getTotal() {
 }
 
 module.exports = {
+  shoppingCart,
   addProduct,
   getTotal
 }
