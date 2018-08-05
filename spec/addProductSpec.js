@@ -1,6 +1,7 @@
 var shoppingCart = require('../src/addProduct').shoppingCart;
 var addProduct = require('../src/addProduct').addProduct;
 var getTotal = require('../src/addProduct').getTotal;
+var calculateTax = require('../src/addProduct').calculateTax;
 
 describe("Shopping Cart suite", function() {
   describe("Add products to the shopping cart", function() {
@@ -9,7 +10,7 @@ describe("Shopping Cart suite", function() {
     });
 
     afterAll(function() {
-      shoppingCart = {products:[]}
+      shoppingCart.products = [];
     });
 
     it("Adds 5 dove soaps to the shopping cart", function() {
@@ -45,7 +46,7 @@ describe("Shopping Cart suite", function() {
 
 describe("Shopping Cart suite with tax", function() {
   afterAll(function() {
-    shoppingCart = {products:[]}
+    shoppingCart.products = [];
   });
   describe("Calculate the tax rate of the shopping cart with multiple items", function() {
 
@@ -66,8 +67,13 @@ describe("Shopping Cart suite with tax", function() {
       );
     });
 
-    xit("It calculates total price with tax for the items in the cart", function() {
-      expect(shoppingCart.total_price).toEqual(314.96);
+    it("It calculates the total price of the items in the cart", function() {
+      expect(shoppingCart.total_price).toEqual(279.96);
+    })
+
+    it("It calculates total price with tax for the items in the cart", function() {
+      calculateTax();
+      expect(shoppingCart.grand_total).toEqual(314.96);
     })
   });
 })

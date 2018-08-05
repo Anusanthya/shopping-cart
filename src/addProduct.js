@@ -19,15 +19,21 @@ function addProduct(product, qty) {
 }
 
 function getTotal() {
-  var total;
+  var total = 0;
   shoppingCart.products.forEach(function(product) {
-    total = product.unit_price * product.qty;
+    total += product.unit_price * product.qty;
   });
   shoppingCart.total_price = +total.toFixed(2);
+}
+
+function calculateTax() {
+  var tax = Math.round(shoppingCart.total_price * (taxRate/100));
+  shoppingCart.grand_total = shoppingCart.total_price + tax;
 }
 
 module.exports = {
   shoppingCart,
   addProduct,
-  getTotal
+  getTotal,
+  calculateTax
 }
