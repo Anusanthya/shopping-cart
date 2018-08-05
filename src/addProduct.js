@@ -1,7 +1,9 @@
 var shoppingCart = {products: []};
+var taxRate = 12.5;
 var priceCatalogue = {
-  dove_soap: 39.99
-}
+  dove_soap: 39.99,
+  axe_deo: 99.99
+};
 
 function addProduct(product, qty) {
   var isProductAdded = shoppingCart.products.find(function(item) {
@@ -13,7 +15,6 @@ function addProduct(product, qty) {
   if(!isProductAdded) {
     shoppingCart.products.push({name: product, unit_price: priceCatalogue[product], qty: qty});
   }
-
   getTotal();
 }
 

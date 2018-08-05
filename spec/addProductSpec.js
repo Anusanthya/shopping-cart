@@ -8,6 +8,10 @@ describe("Shopping Cart suite", function() {
       addProduct('dove_soap', 5);
     });
 
+    afterAll(function() {
+      shoppingCart = {products:[]}
+    });
+
     it("Adds 5 dove soaps to the shopping cart", function() {
       expect(shoppingCart.products).toContain(
           {
@@ -22,7 +26,7 @@ describe("Shopping Cart suite", function() {
       expect(shoppingCart.total_price).toEqual(199.95);
     })
 
-    it("Adds 8 dove soaps to the shopping cart", function() {
+    it("Adds 3 more dove soaps to the shopping cart", function() {
       addProduct('dove_soap', 3);
       expect(shoppingCart.products).toContain(
           {
@@ -36,5 +40,34 @@ describe("Shopping Cart suite", function() {
     it("It updates total price of the items in the cart", function() {
       expect(shoppingCart.total_price).toEqual(319.92);
     })
-  })
+  });
+});
+
+describe("Shopping Cart suite with tax", function() {
+  afterAll(function() {
+    shoppingCart = {products:[]}
+  });
+  describe("Calculate the tax rate of the shopping cart with multiple items", function() {
+
+    it("Adds 2 dove soaps and 2 axe deos to the shopping cart", function() {
+      addProduct('dove_soap', 2);
+      addProduct('axe_deo', 2);
+      expect(shoppingCart.products).toContain(
+        {
+          name: 'dove_soap',
+          unit_price: 39.99,
+          qty: 2
+        },
+        {
+          name: 'axe_deo',
+          unit_price: 99.99,
+          qty: 2
+        }
+      );
+    });
+
+    xit("It calculates total price with tax for the items in the cart", function() {
+      expect(shoppingCart.total_price).toEqual(314.96);
+    })
+  });
 })
